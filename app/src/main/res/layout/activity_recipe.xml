@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".recipe">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="411dp"
+        android:layout_height="634dp">
+
+        <TextView
+            android:id="@+id/recipe_title"
+            style="@style/title"
+            android:layout_width="266dp"
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:text="Title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/recipe_image"
+            android:layout_width="290dp"
+            android:layout_height="318dp"
+            android:layout_marginTop="8dp"
+            android:src="@drawable/blueberry_cupcakes"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_title" />
+
+        <TextView
+            android:id="@+id/recipe_step"
+            android:layout_width="382dp"
+            android:layout_height="221dp"
+            android:layout_marginTop="28dp"
+            android:text="TextView"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.533"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_image" />
+
+        <TextView
+            android:id="@+id/recipe_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:text="TextView"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.21"
+            app:layout_constraintStart_toEndOf="@+id/recipe_title"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="72dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.975"
+        tools:layout_editor_absoluteX="5dp"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/recipe_count"
+            android:layout_width="22dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="0.1"
+            android:text="0"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_minus"
+            app:layout_constraintStart_toEndOf="@+id/ic_minus"
+            app:layout_constraintTop_toTopOf="@+id/ic_minus"
+            app:layout_constraintVertical_bias="0.571" />
+
+        <Button
+            android:id="@+id/recipe_button"
+            android:layout_width="235dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:onClick="addToCart"
+            android:text="Add to Cart"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/ic_plus"
+            app:layout_constraintStart_toEndOf="@+id/ic_plus"
+            app:layout_constraintTop_toTopOf="@+id/ic_plus" />
+
+        <Button
+            android:id="@+id/ic_minus"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:onClick="countMinus"
+            android:text="-"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/ic_plus"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="10dp"
+            android:onClick="countPlus"
+            android:text="+"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="@+id/recipe_count"
+            app:layout_constraintStart_toEndOf="@+id/recipe_count"
+            app:layout_constraintTop_toTopOf="@+id/recipe_count"
+            app:layout_constraintVertical_bias="0.571" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</android.support.constraint.ConstraintLayout>
