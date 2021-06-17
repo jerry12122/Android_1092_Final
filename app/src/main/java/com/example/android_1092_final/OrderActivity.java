@@ -37,7 +37,7 @@ public class OrderActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private CartAdapter mAdapter;
     private EditText name,phone,address,note;
-
+    private TextView total;
 
     private  final LinkedList<String> ids = new LinkedList<>();
     private  final LinkedList<String> foods = new LinkedList<>();
@@ -52,6 +52,7 @@ public class OrderActivity extends AppCompatActivity {
     private DBHelper sqlDataBaseHelper;
 
     private int mode = 0;
+    private int total_int = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +67,7 @@ public class OrderActivity extends AppCompatActivity {
         phone = findViewById(R.id.phone_text);
         address = findViewById(R.id.address_text);
         note = findViewById(R.id.note_text);
-
+        total = findViewById(R.id.order_total);
 
         textView.setText(message);
 
@@ -92,13 +93,22 @@ public class OrderActivity extends AppCompatActivity {
                 price.add(c.getString(2));
                 Log.i("test",food_str[Integer.parseInt(c.getString(0))]+" "+c.getString(1)+" "+c.getString(2));
             }
-
             c.moveToNext();
+
+        }
+        for(int i =0 ;i<foods.size();i++)
+        {
+            int co,p;
+            co = Integer.parseInt(count.get(i));
+            p = Integer.parseInt(price.get(i));
+            total_int = total_int +  co * p;
         }
         mRecyclerView = findViewById(R.id.recyclerview);
         mAdapter = new CartAdapter(this, foods,count,price);
         mRecyclerView.setAdapter(mAdapter);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        total.setText("Total: $"+ String.valueOf(total_int));
 
     }
 
@@ -120,7 +130,8 @@ public class OrderActivity extends AppCompatActivity {
         foods.clear();
         count.clear();
         price.clear();
-
+        total_int = 0;
+        total.setText("Total: $0");
         mRecyclerView = findViewById(R.id.recyclerview);
         mAdapter = new CartAdapter(this, foods,count,price);
         mRecyclerView.setAdapter(mAdapter);
@@ -180,12 +191,12 @@ public class OrderActivity extends AppCompatActivity {
                 String url;
                 if(TextUtils.isEmpty(note.getText()))
                 {
-                    url = "http://10.0.2.2/ad.php?id=" + ids.get(i) + "&count=" + count.get(i) + "&price=" + price.get(i) + "&name=" + name.getText().toString() + "&address="
+                    url = getResources().getString(R.string.server_api) + ids.get(i) + "&count=" + count.get(i) + "&price=" + price.get(i) + "&name=" + name.getText().toString() + "&address="
                             + address.getText().toString() + "&phone=" + phone.getText().toString() + "&note=0&mode=" + mode;
                 }
                 else
                 {
-                    url = "http://10.0.2.2/ad.php?id=" + ids.get(i) + "&count=" + count.get(i) + "&price=" + price.get(i) + "&name=" + name.getText().toString() + "&address="
+                    url = getResources().getString(R.string.server_api)+ "?id=" + ids.get(i) + "&count=" + count.get(i) + "&price=" + price.get(i) + "&name=" + name.getText().toString() + "&address="
                             + address.getText().toString() + "&phone=" + phone.getText().toString() + "&note=" + note.getText().toString() + "&mode=" + mode;
                 }
 

@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Android_1092_Final</string>
+    <string name="server_api">http://132.145.112.232:9453/ad.php</string>
     <string name="action_order">cart</string>
     <string-array name="foods">
         <item>Chocolate Mint Bars</item>
